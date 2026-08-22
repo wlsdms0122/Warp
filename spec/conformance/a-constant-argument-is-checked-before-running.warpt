@@ -1,0 +1,32 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-constant-argument-is-checked-before-running"
+  note "What is knowable before running is decided before running. A constant's shape is knowable, so a call passing one that does not fit is refused where declarations are checked rather than where values arrive."
+  program {
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              it "not a number"
+            }
+            procedure "wants"
+          }
+        }
+      }
+      wants {
+        parameters {
+          it "int"
+        }
+        result {
+          ref "it"
+        }
+        returns "int"
+      }
+    }
+    warp 1
+  }
+}

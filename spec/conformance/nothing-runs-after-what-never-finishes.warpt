@@ -1,0 +1,33 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "nothing-runs-after-what-never-finishes"
+  note "A statement after a call typed never would never run, and the name it would bind would never bind — the same rule the syntactic leaves get at the check, held at the link because only the link knows the signature."
+  program {
+    needs [
+      "std.control.abort"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              of "done"
+              procedure "std.control.abort"
+            }
+          }
+          {
+            id "after"
+            value 1
+          }
+        ]
+        result {
+          ref "after"
+        }
+      }
+    }
+    warp 1
+  }
+}

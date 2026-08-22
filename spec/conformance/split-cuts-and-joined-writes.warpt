@@ -1,0 +1,46 @@
+warpt 1
+{
+  expect {
+    answers "a-b-c"
+  }
+  name "split-cuts-and-joined-writes"
+  note "split answers the text cut on a separator; joined writes strings one after another with one between."
+  program {
+    needs [
+      "std.text.joined"
+      "std.text.split"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              arguments {
+                value ","
+              }
+              of "a,b,c"
+              procedure "std.text.split"
+            }
+            id "pieces"
+          }
+          {
+            call {
+              arguments {
+                value "-"
+              }
+              of {
+                ref "pieces"
+              }
+              procedure "std.text.joined"
+            }
+            id "line"
+          }
+        ]
+        result {
+          ref "line"
+        }
+      }
+    }
+    warp 1
+  }
+}

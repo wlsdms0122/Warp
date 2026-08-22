@@ -1,0 +1,45 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-closure-does-not-leave-what-wrote-it"
+  note "A closure may be called anywhere, including long after the loop that wrote it has finished. A break inside one has no loop around it, whatever stood around the writing — refused at the check."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            id "walked"
+            loop {
+              body [
+                {
+                  id "held"
+                  value {
+                    closure {
+                      body [
+                        {
+                          break null
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+              where {
+                is_not 1
+                of {
+                  ref "walked.index"
+                }
+              }
+            }
+          }
+        ]
+        result {
+          value 1
+        }
+      }
+    }
+    warp 1
+  }
+}

@@ -1,0 +1,28 @@
+warpt 1
+{
+  expect {
+    answers 1.5
+  }
+  name "arithmetic-whole-widens-to-fraction"
+  note "Every whole number is a fraction and the reverse is false, so the conversion that cannot lose anything is the one that happens."
+  program {
+    needs [
+      "std.math.plus"
+    ]
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              value 0.5
+            }
+            of 1
+            procedure "std.math.plus"
+          }
+        }
+        returns "double"
+      }
+    }
+    warp 1
+  }
+}

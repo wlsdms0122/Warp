@@ -1,0 +1,50 @@
+warpt 1
+{
+  expect {
+    answers [
+      1
+      2
+      3
+    ]
+  }
+  name "map-answers-in-the-collections-order"
+  note "The concurrent reading of what each walks. Arrival order decides nothing: the answer sits where its element sat."
+  program {
+    needs [
+      "std.concurrent.map"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              arguments {
+                by {
+                  closure {
+                    parameters {
+                      item "int"
+                    }
+                    result {
+                      ref "item"
+                    }
+                  }
+                }
+              }
+              of [
+                1
+                2
+                3
+              ]
+              procedure "std.concurrent.map"
+            }
+            id "walked"
+          }
+        ]
+        result {
+          ref "walked"
+        }
+      }
+    }
+    warp 1
+  }
+}

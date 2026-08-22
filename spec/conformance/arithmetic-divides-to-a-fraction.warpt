@@ -1,0 +1,28 @@
+warpt 1
+{
+  expect {
+    answers 3.5
+  }
+  name "arithmetic-divides-to-a-fraction"
+  note "Division answers a fraction. Whole divided by whole may answer something that is not whole, so the answer type does not depend on the operands."
+  program {
+    needs [
+      "std.math.dividedBy"
+    ]
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              value 2
+            }
+            of 7
+            procedure "std.math.dividedBy"
+          }
+        }
+        returns "double"
+      }
+    }
+    warp 1
+  }
+}

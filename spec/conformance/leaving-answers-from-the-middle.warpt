@@ -1,0 +1,38 @@
+warpt 1
+{
+  expect {
+    answers "left early"
+  }
+  name "leaving-answers-from-the-middle"
+  note "Answering from inside a body leaves the procedure with what it carries."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            branch {
+              else {
+                result "went on"
+              }
+              then {
+                body [
+                  {
+                    return "left early"
+                  }
+                ]
+              }
+              when true
+            }
+            id "early"
+          }
+        ]
+        result {
+          ref "early"
+        }
+        returns "string"
+      }
+    }
+    warp 1
+  }
+}

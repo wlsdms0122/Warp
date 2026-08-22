@@ -1,0 +1,28 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-null-default-needs-a-type-that-admits-null"
+  note "A default written as null is the value the body receives when the argument is left out, so the declaration must admit null like any other value."
+  program {
+    needs []
+    procedures {
+      entry {
+        result null
+      }
+      pick {
+        parameters {
+          word {
+            default null
+            type "string"
+          }
+        }
+        result {
+          ref "word"
+        }
+      }
+    }
+    warp 1
+  }
+}

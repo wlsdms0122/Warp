@@ -1,0 +1,38 @@
+warpt 1
+{
+  expect {
+    answers 1
+  }
+  name "a-statement-with-no-name-still-runs"
+  note "A statement with no naming key runs its construct and drops the answer — how an effect is asked for on its own."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            value 0
+            var "seen"
+          }
+          {
+            branch {
+              then {
+                body [
+                  {
+                    set "seen"
+                    value 1
+                  }
+                ]
+              }
+              when true
+            }
+          }
+        ]
+        result {
+          ref "seen"
+        }
+      }
+    }
+    warp 1
+  }
+}

@@ -1,0 +1,32 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-fraction-is-not-a-whole-number"
+  note "A slot asking for a whole number does not take a fraction. Taking one that happened to be whole would make whether a value fits depend on the value rather than the type, so 2.0 would be accepted where 2.5 is refused by a declaration that names neither."
+  program {
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              it 2.0
+            }
+            procedure "wants"
+          }
+        }
+      }
+      wants {
+        parameters {
+          it "int"
+        }
+        result {
+          ref "it"
+        }
+        returns "int"
+      }
+    }
+    warp 1
+  }
+}

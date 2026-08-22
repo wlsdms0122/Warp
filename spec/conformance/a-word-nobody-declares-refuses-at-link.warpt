@@ -1,0 +1,20 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-word-nobody-declares-refuses-at-link"
+  note "Every word a program sends has to come from somewhere in the link, and finding out is linking rather than running."
+  program {
+    procedures {
+      entry {
+        result {
+          call {
+            procedure "nobodyDeclaresThis"
+          }
+        }
+      }
+    }
+    warp 1
+  }
+}

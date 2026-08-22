@@ -1,0 +1,28 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-oneof-that-admits-nothing-refuses-at-link"
+  note "A oneOf that admits nothing is a parameter no call could ever fit."
+  program {
+    needs []
+    procedures {
+      entry {
+        result null
+      }
+      pick {
+        parameters {
+          mode {
+            oneOf []
+            type "string"
+          }
+        }
+        result {
+          ref "mode"
+        }
+      }
+    }
+    warp 1
+  }
+}

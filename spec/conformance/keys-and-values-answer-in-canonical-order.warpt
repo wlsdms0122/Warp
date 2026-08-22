@@ -1,0 +1,44 @@
+warpt 1
+{
+  expect {
+    answers [
+      "a"
+      "b"
+      "c"
+    ]
+  }
+  name "keys-and-values-answer-in-canonical-order"
+  note "A record has no order, so the words that walk one answer in the record's canonical order — names ascending — and a program that walks them gets the same walk on every run."
+  program {
+    needs [
+      "std.collection.keys"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            id "data"
+            value {
+              a 2
+              b 1
+              c 3
+            }
+          }
+          {
+            call {
+              of {
+                ref "data"
+              }
+              procedure "std.collection.keys"
+            }
+            id "names"
+          }
+        ]
+        result {
+          ref "names"
+        }
+      }
+    }
+    warp 1
+  }
+}

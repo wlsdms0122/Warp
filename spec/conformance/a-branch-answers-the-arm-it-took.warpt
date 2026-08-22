@@ -1,0 +1,41 @@
+warpt 1
+{
+  arguments {
+    take true
+  }
+  expect {
+    answers "took-then"
+  }
+  name "a-branch-answers-the-arm-it-took"
+  note "A named branch binds what the taken arm's result answers."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            branch {
+              else {
+                result "took-else"
+              }
+              then {
+                result "took-then"
+              }
+              when {
+                ref "take"
+              }
+            }
+            id "chosen"
+          }
+        ]
+        parameters {
+          take "bool"
+        }
+        result {
+          ref "chosen"
+        }
+      }
+    }
+    warp 1
+  }
+}

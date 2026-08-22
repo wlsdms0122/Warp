@@ -1,0 +1,25 @@
+warpt 1
+{
+  expect {
+    answers 1.0
+  }
+  name "an-omitted-argument-arrives-as-the-settled-default"
+  note "A taken default walks the same gate a passed argument does, so a whole number defaulting a fraction slot arrives as the fraction it settles to."
+  program {
+    needs []
+    procedures {
+      entry {
+        parameters {
+          count {
+            default 1
+            type "double"
+          }
+        }
+        result {
+          ref "count"
+        }
+      }
+    }
+    warp 1
+  }
+}

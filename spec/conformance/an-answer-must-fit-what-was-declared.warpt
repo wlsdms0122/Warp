@@ -1,0 +1,18 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "an-answer-must-fit-what-was-declared"
+  note "A constant answer is knowable from the text, so it is held to the declaration at the link, the way a constant argument is. An answer only a run can produce is settled at the boundary instead."
+  program {
+    needs []
+    procedures {
+      entry {
+        result "hello"
+        returns "int"
+      }
+    }
+    warp 1
+  }
+}

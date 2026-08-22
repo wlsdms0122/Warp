@@ -1,0 +1,44 @@
+warpt 1
+{
+  expect {
+    answers {
+      left 1
+      right 2
+    }
+  }
+  name "concurrency-is-granted-vocabulary"
+  note "Running at once is a word, not grammar. A closure is the one body safe to run beside another, so a caller grants concurrency by linking std.concurrent — and all answers every answer under the author's keys."
+  program {
+    needs [
+      "std.concurrent.all"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              of {
+                left {
+                  closure {
+                    result 1
+                  }
+                }
+                right {
+                  closure {
+                    result 2
+                  }
+                }
+              }
+              procedure "std.concurrent.all"
+            }
+            id "both"
+          }
+        ]
+        result {
+          ref "both"
+        }
+      }
+    }
+    warp 1
+  }
+}

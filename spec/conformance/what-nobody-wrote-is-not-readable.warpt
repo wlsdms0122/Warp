@@ -1,0 +1,18 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "what-nobody-wrote-is-not-readable"
+  note "Every ref resolves to a parameter, a constant, or a statement written before it. A name nobody wrote resolves nowhere."
+  program {
+    procedures {
+      entry {
+        result {
+          ref "ghost"
+        }
+      }
+    }
+    warp 1
+  }
+}

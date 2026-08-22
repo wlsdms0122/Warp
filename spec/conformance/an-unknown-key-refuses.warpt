@@ -1,0 +1,19 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "an-unknown-key-refuses"
+  note "Every record in the grammar is closed. A key this specification does not name is not skipped — skipping is running a program nobody checked."
+  program {
+    mystery 1
+    procedures {
+      entry {
+        result {
+          value 1
+        }
+      }
+    }
+    warp 1
+  }
+}

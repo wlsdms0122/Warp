@@ -1,0 +1,53 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "an-effectful-closure-where-pure-is-asked-refuses"
+  note "A slot declared pure takes only a procedure that answers without running. What a closure sends is a fact about its text, so the refusal is the link's."
+  program {
+    needs [
+      "std.collection.filter"
+      "std.concurrent.all"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              arguments {
+                value {
+                  closure {
+                    body [
+                      {
+                        call {
+                          of []
+                          procedure "std.concurrent.all"
+                        }
+                        id "raced"
+                      }
+                    ]
+                    parameters {
+                      item "int"
+                    }
+                    result true
+                    returns "bool"
+                  }
+                }
+              }
+              of [
+                1
+              ]
+              procedure "std.collection.filter"
+            }
+            id "kept"
+          }
+        ]
+        result {
+          ref "kept"
+        }
+      }
+    }
+    warp 1
+  }
+}

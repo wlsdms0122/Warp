@@ -1,0 +1,45 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-bare-name-two-modules-declare-refuses"
+  note "A bare word resolves only while exactly one linked module declares it. `map` is declared by std.collection and std.concurrent, so its bare spelling refuses and only the qualified spellings resolve."
+  program {
+    needs [
+      "map"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              arguments {
+                value {
+                  closure {
+                    parameters {
+                      item "int"
+                    }
+                    result {
+                      ref "item"
+                    }
+                    returns "int"
+                  }
+                }
+              }
+              of [
+                1
+              ]
+              procedure "map"
+            }
+            id "mapped"
+          }
+        ]
+        result {
+          ref "mapped"
+        }
+      }
+    }
+    warp 1
+  }
+}

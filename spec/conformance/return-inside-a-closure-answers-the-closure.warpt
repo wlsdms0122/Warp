@@ -1,0 +1,66 @@
+warpt 1
+{
+  expect {
+    answers "inner-and-on"
+  }
+  name "return-inside-a-closure-answers-the-closure"
+  note "Leaving does not cross a closure's edge: `return` inside one answers the closure, and the flow that invoked it goes on."
+  program {
+    needs [
+      "std.text.joined"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            id "shout"
+            value {
+              closure {
+                body [
+                  {
+                    branch {
+                      then {
+                        body [
+                          {
+                            return "inner"
+                          }
+                        ]
+                      }
+                      when true
+                    }
+                  }
+                ]
+                result "outer"
+                returns "string"
+              }
+            }
+          }
+          {
+            id "got"
+            invoke {
+              procedure {
+                ref "shout"
+              }
+            }
+          }
+          {
+            call {
+              of [
+                {
+                  ref "got"
+                }
+                "-and-on"
+              ]
+              procedure "std.text.joined"
+            }
+            id "after"
+          }
+        ]
+        result {
+          ref "after"
+        }
+      }
+    }
+    warp 1
+  }
+}

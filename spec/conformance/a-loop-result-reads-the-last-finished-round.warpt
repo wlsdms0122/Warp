@@ -1,0 +1,50 @@
+warpt 1
+{
+  expect {
+    answers 2
+  }
+  name "a-loop-result-reads-the-last-finished-round"
+  note "What a loop answers is its result read in what the last round that finished left behind; a round cut short contributed nothing."
+  program {
+    needs [
+      "std.math.lessThan"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            id "walked"
+            loop {
+              body [
+                {
+                  id "tick"
+                  value {
+                    ref "walked.index"
+                  }
+                }
+              ]
+              result {
+                ref "tick"
+              }
+              where {
+                call {
+                  arguments {
+                    value 3
+                  }
+                  of {
+                    ref "walked.index"
+                  }
+                  procedure "std.math.lessThan"
+                }
+              }
+            }
+          }
+        ]
+        result {
+          ref "walked"
+        }
+      }
+    }
+    warp 1
+  }
+}

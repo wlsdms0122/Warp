@@ -1,0 +1,31 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-oneof-no-candidate-of-which-fits-refuses-at-link"
+  note "Admitting nothing is a fact about the declared type and the candidate set together, not about the set being empty — a oneOf of words on a whole-number slot fits no call."
+  program {
+    needs []
+    procedures {
+      entry {
+        result null
+      }
+      pick {
+        parameters {
+          count {
+            oneOf [
+              "fast"
+              "slow"
+            ]
+            type "int"
+          }
+        }
+        result {
+          ref "count"
+        }
+      }
+    }
+    warp 1
+  }
+}

@@ -1,0 +1,38 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-loop-takes-no-budget"
+  note "Repetition carries no budget of its own: an author bounds a loop with a counter and a word, and a receiver stops one with cancellation. A guard key is not a key."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            id "gate"
+            loop {
+              body [
+                {
+                  id "noop"
+                  value 1
+                }
+              ]
+              guard 2
+              where {
+                is_not 3
+                of {
+                  ref "gate.index"
+                }
+              }
+            }
+          }
+        ]
+        result {
+          value null
+        }
+      }
+    }
+    warp 1
+  }
+}

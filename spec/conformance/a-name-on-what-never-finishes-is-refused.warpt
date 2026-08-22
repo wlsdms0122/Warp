@@ -1,0 +1,28 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-name-on-what-never-finishes-is-refused"
+  note "std.control.abort declares never, so a name on its call promises a binding that cannot happen. The link refuses the name where the signature is known."
+  program {
+    needs [
+      "std.control.abort"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              of "done"
+              procedure "std.control.abort"
+            }
+            id "gone"
+          }
+        ]
+        result 1
+      }
+    }
+    warp 1
+  }
+}

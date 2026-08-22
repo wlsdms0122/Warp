@@ -1,0 +1,30 @@
+warpt 1
+{
+  expect {
+    answers 20
+  }
+  name "a-path-reads-through-what-a-name-holds"
+  note "A path walks fields and elements of what its head resolves to."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            id "data"
+            value {
+              list [
+                10
+                20
+              ]
+            }
+          }
+        ]
+        result {
+          ref "data.list[1]"
+        }
+      }
+    }
+    warp 1
+  }
+}

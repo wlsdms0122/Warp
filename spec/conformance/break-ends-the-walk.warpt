@@ -1,0 +1,76 @@
+warpt 1
+{
+  expect {
+    answers "a"
+  }
+  name "break-ends-the-walk"
+  note "`break` ends the whole walk; rounds after it never start."
+  program {
+    needs [
+      "std.logic.equal"
+      "std.text.joined"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            value ""
+            var "seen"
+          }
+          {
+            each {
+              body [
+                {
+                  branch {
+                    then {
+                      body [
+                        {
+                          break null
+                        }
+                      ]
+                    }
+                    when {
+                      call {
+                        arguments {
+                          value 1
+                        }
+                        of {
+                          ref "walk.index"
+                        }
+                        procedure "std.logic.equal"
+                      }
+                    }
+                  }
+                }
+                {
+                  call {
+                    of [
+                      {
+                        ref "seen"
+                      }
+                      {
+                        ref "walk.item"
+                      }
+                    ]
+                    procedure "std.text.joined"
+                  }
+                  set "seen"
+                }
+              ]
+              in [
+                "a"
+                "b"
+                "c"
+              ]
+            }
+            id "walk"
+          }
+        ]
+        result {
+          ref "seen"
+        }
+      }
+    }
+    warp 1
+  }
+}

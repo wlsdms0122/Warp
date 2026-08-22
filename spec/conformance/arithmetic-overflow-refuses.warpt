@@ -1,0 +1,27 @@
+warpt 1
+{
+  expect {
+    refuses "run"
+  }
+  name "arithmetic-overflow-refuses"
+  note "Whole-number arithmetic with no whole answer refuses. Wrapping would answer, and answering wrongly is worse than not answering."
+  program {
+    needs [
+      "std.math.plus"
+    ]
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              value 1
+            }
+            of 9223372036854775807
+            procedure "std.math.plus"
+          }
+        }
+      }
+    }
+    warp 1
+  }
+}

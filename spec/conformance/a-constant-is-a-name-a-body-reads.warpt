@@ -1,0 +1,22 @@
+warpt 1
+{
+  expect {
+    answers 3
+  }
+  name "a-constant-is-a-name-a-body-reads"
+  note "A constant is declared by the module and read like any name; linking folds it into the value it always was."
+  program {
+    const {
+      limit 3
+    }
+    needs []
+    procedures {
+      entry {
+        result {
+          ref "limit"
+        }
+      }
+    }
+    warp 1
+  }
+}

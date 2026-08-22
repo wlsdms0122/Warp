@@ -1,0 +1,34 @@
+warpt 1
+{
+  arguments {
+    task {
+      done true
+      id "a"
+    }
+  }
+  expect {
+    answers true
+  }
+  name "a-declared-type-names-a-shape"
+  note "A module declares shapes under names, and a declared name is a type wherever a type is written."
+  program {
+    needs []
+    procedures {
+      entry {
+        parameters {
+          task "Task"
+        }
+        result {
+          ref "task.done"
+        }
+      }
+    }
+    types {
+      Task {
+        done "bool"
+        id "string"
+      }
+    }
+    warp 1
+  }
+}

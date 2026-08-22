@@ -1,0 +1,26 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "nothing-runs-after-leaving"
+  note "A statement after one that leaves never runs, so the name it was going to bind never binds."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            return "here"
+          }
+          {
+            id "unreachable"
+            value "never"
+          }
+        ]
+        returns "string"
+      }
+    }
+    warp 1
+  }
+}

@@ -1,0 +1,25 @@
+warpt 1
+{
+  arguments {
+    word "café"
+  }
+  expect {
+    answers 4
+  }
+  name "text-counts-as-a-person-reads"
+  note "Text is counted by extended grapheme cluster under canonical equivalence: a letter written as letter-plus-combining-mark is one character."
+  program {
+    needs []
+    procedures {
+      entry {
+        parameters {
+          word "string"
+        }
+        result {
+          ref "word.count"
+        }
+      }
+    }
+    warp 1
+  }
+}

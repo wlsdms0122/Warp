@@ -1,0 +1,37 @@
+warpt 1
+{
+  expect {
+    answers true
+  }
+  name "contains-asks-a-collection"
+  note "contains answers whether a collection holds a value, by the language's one sameness."
+  program {
+    needs [
+      "std.collection.contains"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              arguments {
+                value 2
+              }
+              of [
+                1
+                2
+                3
+              ]
+              procedure "std.collection.contains"
+            }
+            id "held"
+          }
+        ]
+        result {
+          ref "held"
+        }
+      }
+    }
+    warp 1
+  }
+}

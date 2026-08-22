@@ -1,0 +1,24 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "writing-a-name-never-declared-refuses"
+  note "`set` writes a name a `var` declared earlier. With no declaration there is nothing to write."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            set "x"
+            value 2
+          }
+        ]
+        result {
+          ref "x"
+        }
+      }
+    }
+    warp 1
+  }
+}

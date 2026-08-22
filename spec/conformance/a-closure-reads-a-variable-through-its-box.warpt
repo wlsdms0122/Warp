@@ -1,0 +1,47 @@
+warpt 1
+{
+  expect {
+    answers 5
+  }
+  name "a-closure-reads-a-variable-through-its-box"
+  note "A closure captures a fixed name's value and a variable's box. A variable set between the making and the calling is seen by the call — the box is one thing under one name everywhere it is visible; what keeps this raceless is that the closure may not write it."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            value 0
+            var "tally"
+          }
+          {
+            id "held"
+            value {
+              closure {
+                result {
+                  ref "tally"
+                }
+              }
+            }
+          }
+          {
+            set "tally"
+            value 5
+          }
+          {
+            id "called"
+            invoke {
+              procedure {
+                ref "held"
+              }
+            }
+          }
+        ]
+        result {
+          ref "called"
+        }
+      }
+    }
+    warp 1
+  }
+}

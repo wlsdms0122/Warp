@@ -1,0 +1,39 @@
+warpt 1
+{
+  arguments {
+    stuff "not-a-list"
+  }
+  expect {
+    refuses "run"
+  }
+  name "a-walk-over-what-is-not-a-collection-refuses-at-run"
+  note "A walk takes a collection. Handed anything else, it refuses rather than walking a guess."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            each {
+              body [
+                {
+                  id "noop"
+                  value 1
+                }
+              ]
+              in {
+                ref "stuff"
+              }
+            }
+            id "walk"
+          }
+        ]
+        parameters {
+          stuff "any"
+        }
+        result null
+      }
+    }
+    warp 1
+  }
+}

@@ -1,0 +1,33 @@
+warpt 1
+{
+  arguments {
+    task {
+      id "a"
+    }
+  }
+  expect {
+    refuses "run"
+  }
+  name "a-value-outside-a-declared-shape-refuses-at-the-boundary"
+  note "Arguments are settled against the declaration before the body sees them, and a record missing a declared field does not fit the shape."
+  program {
+    needs []
+    procedures {
+      entry {
+        parameters {
+          task "Task"
+        }
+        result {
+          ref "task.done"
+        }
+      }
+    }
+    types {
+      Task {
+        done "bool"
+        id "string"
+      }
+    }
+    warp 1
+  }
+}

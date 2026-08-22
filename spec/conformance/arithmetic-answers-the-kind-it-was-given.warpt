@@ -1,0 +1,41 @@
+warpt 1
+{
+  expect {
+    answers 3
+  }
+  name "arithmetic-answers-the-kind-it-was-given"
+  note "A whole number added to a whole number is a whole number, so the answer fits a slot asking for one. A declaration that only said number would not, and this is what one hole says in place of the several declarations overloading would need."
+  program {
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              it {
+                call {
+                  arguments {
+                    value 2
+                  }
+                  of 1
+                  procedure "std.math.plus"
+                }
+              }
+            }
+            procedure "wants"
+          }
+        }
+        returns "int"
+      }
+      wants {
+        parameters {
+          it "int"
+        }
+        result {
+          ref "it"
+        }
+        returns "int"
+      }
+    }
+    warp 1
+  }
+}

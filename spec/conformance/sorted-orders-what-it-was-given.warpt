@@ -1,0 +1,38 @@
+warpt 1
+{
+  expect {
+    answers [
+      1
+      2
+      3
+    ]
+  }
+  name "sorted-orders-what-it-was-given"
+  note "sorted answers the elements in order and leaves what it was given as it was."
+  program {
+    needs [
+      "std.collection.sorted"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              of [
+                3
+                1
+                2
+              ]
+              procedure "std.collection.sorted"
+            }
+            id "ordered"
+          }
+        ]
+        result {
+          ref "ordered"
+        }
+      }
+    }
+    warp 1
+  }
+}

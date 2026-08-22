@@ -1,0 +1,18 @@
+warpt 1
+{
+  expect {
+    answers 2.0
+  }
+  name "a-whole-fraction-stays-a-fraction"
+  note "A document tells a whole number from a fraction. An encoding that wrote 1 for both would hand a declaration asking for a fraction a whole number."
+  program {
+    needs []
+    procedures {
+      entry {
+        result 2.0
+        returns "double"
+      }
+    }
+    warp 1
+  }
+}

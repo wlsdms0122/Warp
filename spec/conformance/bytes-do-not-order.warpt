@@ -1,0 +1,27 @@
+warpt 1
+{
+  expect {
+    refuses "run"
+  }
+  name "bytes-do-not-order"
+  note "Bytes are an opaque value: equal or not, counted, and nothing else. Ordering implies a reading, and bytes are the kind that has none."
+  program {
+    needs [
+      "std.math.lessThan"
+    ]
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              value x"02"
+            }
+            of x"01"
+            procedure "std.math.lessThan"
+          }
+        }
+      }
+    }
+    warp 1
+  }
+}

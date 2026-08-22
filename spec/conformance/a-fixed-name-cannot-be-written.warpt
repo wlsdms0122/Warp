@@ -1,0 +1,28 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-fixed-name-cannot-be-written"
+  note "`id` fixes the name — written once, never again. Writing it needs `var` to have introduced it."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            id "x"
+            value 1
+          }
+          {
+            set "x"
+            value 2
+          }
+        ]
+        result {
+          ref "x"
+        }
+      }
+    }
+    warp 1
+  }
+}

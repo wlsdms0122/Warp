@@ -1,0 +1,45 @@
+warpt 1
+{
+  arguments {
+    word "hey"
+  }
+  expect {
+    answers "hey!"
+  }
+  name "a-receiver-is-reached-by-a-path"
+  note "A procedure naming a receiver parameter is reachable through a path, the way a word is — and a path only ever reaches what answers without running."
+  program {
+    needs [
+      "std.text.joined"
+    ]
+    procedures {
+      entry {
+        parameters {
+          word "string"
+        }
+        result {
+          ref "word.shout"
+        }
+      }
+      shout {
+        parameters {
+          of "string"
+        }
+        receiver "of"
+        result {
+          call {
+            of [
+              {
+                ref "of"
+              }
+              "!"
+            ]
+            procedure "std.text.joined"
+          }
+        }
+        returns "string"
+      }
+    }
+    warp 1
+  }
+}

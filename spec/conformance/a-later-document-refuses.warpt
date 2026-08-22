@@ -1,0 +1,16 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-later-document-refuses"
+  note "A reader that meets a shape it does not know would otherwise read what it recognises and run a program nobody wrote."
+  program {
+    procedures {
+      entry {
+        result "hello"
+      }
+    }
+    warp 9999
+  }
+}

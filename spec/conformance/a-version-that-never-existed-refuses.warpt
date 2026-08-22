@@ -1,0 +1,18 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-version-that-never-existed-refuses"
+  note "The reading range is closed at both ends. Below it, a document claims a language that never was."
+  program {
+    procedures {
+      entry {
+        result {
+          value 1
+        }
+      }
+    }
+    warp 0
+  }
+}

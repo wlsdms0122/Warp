@@ -1,0 +1,25 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "an-untruthful-manifest-refuses"
+  note "A caller reads the list to decide whether to run the program at all, so a list allowed to drift would be trusted and wrong."
+  program {
+    needs []
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              value 2
+            }
+            of 1
+            procedure "std.math.plus"
+          }
+        }
+      }
+    }
+    warp 1
+  }
+}

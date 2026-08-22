@@ -1,0 +1,76 @@
+warpt 1
+{
+  expect {
+    answers "ac"
+  }
+  name "continue-skips-a-round"
+  note "`continue` ends the round and the walk goes on to the next."
+  program {
+    needs [
+      "std.logic.equal"
+      "std.text.joined"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            value ""
+            var "seen"
+          }
+          {
+            each {
+              body [
+                {
+                  branch {
+                    then {
+                      body [
+                        {
+                          continue null
+                        }
+                      ]
+                    }
+                    when {
+                      call {
+                        arguments {
+                          value 1
+                        }
+                        of {
+                          ref "walk.index"
+                        }
+                        procedure "std.logic.equal"
+                      }
+                    }
+                  }
+                }
+                {
+                  call {
+                    of [
+                      {
+                        ref "seen"
+                      }
+                      {
+                        ref "walk.item"
+                      }
+                    ]
+                    procedure "std.text.joined"
+                  }
+                  set "seen"
+                }
+              ]
+              in [
+                "a"
+                "b"
+                "c"
+              ]
+            }
+            id "walk"
+          }
+        ]
+        result {
+          ref "seen"
+        }
+      }
+    }
+    warp 1
+  }
+}

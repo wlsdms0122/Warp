@@ -1,0 +1,42 @@
+warpt 1
+{
+  arguments {
+    ready true
+  }
+  expect {
+    refuses "load"
+  }
+  name "an-untaken-arm-is-checked-too"
+  note "A program that arrived from elsewhere has branches nobody ran before sending it, and the one that matters is often the one that only fires in production. An interpreter that reports a defect on the path taken is sampling, not checking."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            branch {
+              else {
+                result {
+                  ref "nobodyEverBoundThis"
+                }
+              }
+              then {
+                result "taken"
+              }
+              when {
+                ref "ready"
+              }
+            }
+            id "pick"
+          }
+        ]
+        parameters {
+          ready "bool"
+        }
+        result {
+          ref "pick"
+        }
+      }
+    }
+    warp 1
+  }
+}

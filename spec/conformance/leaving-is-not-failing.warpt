@@ -1,0 +1,35 @@
+warpt 1
+{
+  expect {
+    answers "left from inside"
+  }
+  name "leaving-is-not-failing"
+  note "A rescue is for what the world did; leaving is what the program said. This is the distinction the language could not make while the only way out was to fail on purpose."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            attempt {
+              body [
+                {
+                  return "left from inside"
+                }
+              ]
+              rescue {
+                result "the rescue ran"
+              }
+            }
+            id "tried"
+          }
+        ]
+        result {
+          ref "tried"
+        }
+        returns "string"
+      }
+    }
+    warp 1
+  }
+}

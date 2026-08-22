@@ -1,0 +1,27 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-statement-saying-two-things-refuses"
+  note "A statement carries exactly one construct key. Two constructs in one record is two statements nobody ordered."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              procedure "std.math.plus"
+            }
+            id "x"
+            value 1
+          }
+        ]
+        result {
+          ref "x"
+        }
+      }
+    }
+    warp 1
+  }
+}

@@ -1,0 +1,26 @@
+warpt 1
+{
+  expect {
+    answers null
+  }
+  name "body-answers-only-what-it-declares"
+  note "A body with no result answers nothing. Reading the last statement would put the answer in the ordering, where nothing points at it."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            id "first"
+            value 1
+          }
+          {
+            id "second"
+            value 2
+          }
+        ]
+      }
+    }
+    warp 1
+  }
+}

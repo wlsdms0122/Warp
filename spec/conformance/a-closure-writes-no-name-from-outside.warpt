@@ -1,0 +1,40 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-closure-writes-no-name-from-outside"
+  note "A closure captures values, and a name it captured is a value it captured. It may run beside another or long after this body, so a write out of it is the one ordering nothing can supply — refused at the check."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            value 0
+            var "tally"
+          }
+          {
+            id "held"
+            value {
+              closure {
+                body [
+                  {
+                    set "tally"
+                    value 1
+                  }
+                ]
+                result {
+                  ref "tally"
+                }
+              }
+            }
+          }
+        ]
+        result {
+          ref "tally"
+        }
+      }
+    }
+    warp 1
+  }
+}

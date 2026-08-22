@@ -1,0 +1,30 @@
+warpt 1
+{
+  expect {
+    refuses "run"
+  }
+  name "first-over-nothing-refuses"
+  note "A word that answers exactly one thing has no empty answer."
+  program {
+    needs [
+      "std.concurrent.first"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              of []
+              procedure "std.concurrent.first"
+            }
+            id "won"
+          }
+        ]
+        result {
+          ref "won"
+        }
+      }
+    }
+    warp 1
+  }
+}

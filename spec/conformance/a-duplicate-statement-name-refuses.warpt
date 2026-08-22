@@ -1,0 +1,28 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-duplicate-statement-name-refuses"
+  note "A name is introduced once in a scope. Two statements fixing the same name would leave two readings of one spelling."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            id "x"
+            value 1
+          }
+          {
+            id "x"
+            value 2
+          }
+        ]
+        result {
+          ref "x"
+        }
+      }
+    }
+    warp 1
+  }
+}

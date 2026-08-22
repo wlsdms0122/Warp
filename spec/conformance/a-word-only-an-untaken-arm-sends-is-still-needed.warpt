@@ -1,0 +1,44 @@
+warpt 1
+{
+  arguments {
+    ready true
+  }
+  expect {
+    refuses "link"
+  }
+  name "a-word-only-an-untaken-arm-sends-is-still-needed"
+  note "The same rule one layer out: a word reached only from an arm nobody takes still has to be there, because whether the arm is taken is not known until it runs and by then the refusal is too late."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            branch {
+              else {
+                result {
+                  call {
+                    procedure "nobodyDeclaresThis"
+                  }
+                }
+              }
+              then {
+                result "taken"
+              }
+              when {
+                ref "ready"
+              }
+            }
+            id "pick"
+          }
+        ]
+        parameters {
+          ready "bool"
+        }
+        result {
+          ref "pick"
+        }
+      }
+    }
+    warp 1
+  }
+}

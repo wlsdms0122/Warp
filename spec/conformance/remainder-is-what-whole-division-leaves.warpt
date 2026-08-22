@@ -1,0 +1,33 @@
+warpt 1
+{
+  expect {
+    answers 1
+  }
+  name "remainder-is-what-whole-division-leaves"
+  note "remainder answers what is left of a whole division."
+  program {
+    needs [
+      "std.math.remainder"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              arguments {
+                value 3
+              }
+              of 7
+              procedure "std.math.remainder"
+            }
+            id "left"
+          }
+        ]
+        result {
+          ref "left"
+        }
+      }
+    }
+    warp 1
+  }
+}

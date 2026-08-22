@@ -1,0 +1,30 @@
+warpt 1
+{
+  expect {
+    answers null
+  }
+  name "a-declining-branch-answers-null"
+  note "With no else, a branch whose condition declines binds null — absence as a value, not a name that does not exist."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            branch {
+              then {
+                result "took-then"
+              }
+              when false
+            }
+            id "chosen"
+          }
+        ]
+        result {
+          ref "chosen"
+        }
+      }
+    }
+    warp 1
+  }
+}

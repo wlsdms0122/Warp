@@ -1,0 +1,58 @@
+warpt 1
+{
+  expect {
+    answers 3
+  }
+  name "a-loop-reads-how-many-rounds-passed"
+  note "The loop's own name binds the round it is on, and the condition reads it before the round runs."
+  program {
+    needs [
+      "std.math.lessThan"
+      "std.math.plus"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            value 0
+            var "count"
+          }
+          {
+            id "round"
+            loop {
+              body [
+                {
+                  call {
+                    arguments {
+                      value 1
+                    }
+                    of {
+                      ref "count"
+                    }
+                    procedure "std.math.plus"
+                  }
+                  set "count"
+                }
+              ]
+              where {
+                call {
+                  arguments {
+                    value 3
+                  }
+                  of {
+                    ref "round.index"
+                  }
+                  procedure "std.math.lessThan"
+                }
+              }
+            }
+          }
+        ]
+        result {
+          ref "count"
+        }
+      }
+    }
+    warp 1
+  }
+}

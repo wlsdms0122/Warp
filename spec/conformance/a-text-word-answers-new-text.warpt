@@ -1,0 +1,40 @@
+warpt 1
+{
+  expect {
+    answers "HI"
+  }
+  name "a-text-word-answers-new-text"
+  note "Text words answer a new string and touch nothing: trimming drops surrounding whitespace, casing rewrites the letters."
+  program {
+    needs [
+      "std.text.trimmed"
+      "std.text.uppercased"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              of " hi "
+              procedure "std.text.trimmed"
+            }
+            id "clean"
+          }
+          {
+            call {
+              of {
+                ref "clean"
+              }
+              procedure "std.text.uppercased"
+            }
+            id "loud"
+          }
+        ]
+        result {
+          ref "loud"
+        }
+      }
+    }
+    warp 1
+  }
+}

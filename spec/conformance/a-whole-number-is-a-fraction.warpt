@@ -1,0 +1,33 @@
+warpt 1
+{
+  expect {
+    answers 2.0
+  }
+  name "a-whole-number-is-a-fraction"
+  note "The conversion the language does perform, and it goes the way that cannot lose anything."
+  program {
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              it 2
+            }
+            procedure "wants"
+          }
+        }
+        returns "double"
+      }
+      wants {
+        parameters {
+          it "double"
+        }
+        result {
+          ref "it"
+        }
+        returns "double"
+      }
+    }
+    warp 1
+  }
+}

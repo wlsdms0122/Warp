@@ -1,0 +1,27 @@
+warpt 1
+{
+  expect {
+    refuses "run"
+  }
+  name "arithmetic-divide-by-zero-refuses"
+  note "A fraction has an answer for this and it is not a number, so answering with it would put something in a program no later check could talk about."
+  program {
+    needs [
+      "std.math.dividedBy"
+    ]
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              value 0
+            }
+            of 1
+            procedure "std.math.dividedBy"
+          }
+        }
+      }
+    }
+    warp 1
+  }
+}

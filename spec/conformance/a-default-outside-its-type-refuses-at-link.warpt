@@ -1,0 +1,28 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-default-outside-its-type-refuses-at-link"
+  note "A default the parameter's own type would refuse is a refusal waiting for the one call that leans on it. The declaration is judged at the link, where declared type names resolve."
+  program {
+    needs []
+    procedures {
+      entry {
+        result null
+      }
+      pick {
+        parameters {
+          count {
+            default "three"
+            type "int"
+          }
+        }
+        result {
+          ref "count"
+        }
+      }
+    }
+    warp 1
+  }
+}

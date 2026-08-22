@@ -1,0 +1,57 @@
+warpt 1
+{
+  expect {
+    answers {
+      tally 6
+    }
+  }
+  name "a-walk-answers-nothing-and-writes-the-flow-it-is-in"
+  note "A walk answers nothing, and its name is the element's alone — not readable after the walk. A round's contribution is what it writes outward: a pure mapping is std.collection.map's to say, and an effectful round with something to keep writes an outer variable."
+  program {
+    needs [
+      "plus"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            value 0
+            var "tally"
+          }
+          {
+            each {
+              body [
+                {
+                  call {
+                    arguments {
+                      value {
+                        ref "walk.item"
+                      }
+                    }
+                    of {
+                      ref "tally"
+                    }
+                    procedure "plus"
+                  }
+                  set "tally"
+                }
+              ]
+              in [
+                1
+                2
+                3
+              ]
+            }
+            id "walk"
+          }
+        ]
+        result {
+          tally {
+            ref "tally"
+          }
+        }
+      }
+    }
+    warp 1
+  }
+}

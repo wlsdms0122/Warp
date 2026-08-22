@@ -1,0 +1,73 @@
+warpt 1
+{
+  expect {
+    answers [
+      "0a"
+      "1b"
+    ]
+  }
+  name "concurrent-map-offers-item-and-index"
+  note "A walking word offers names, and the closure's own parameters say which of the offer it reads — the concurrent map offers item and index and answers in the collection's order."
+  program {
+    needs [
+      "std.concurrent.map"
+      "std.text.joined"
+      "std.text.text"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              arguments {
+                by {
+                  closure {
+                    body [
+                      {
+                        call {
+                          of {
+                            ref "index"
+                          }
+                          procedure "std.text.text"
+                        }
+                        id "place"
+                      }
+                    ]
+                    parameters {
+                      index "int"
+                      item "string"
+                    }
+                    result {
+                      call {
+                        of [
+                          {
+                            ref "place"
+                          }
+                          {
+                            ref "item"
+                          }
+                        ]
+                        procedure "std.text.joined"
+                      }
+                    }
+                    returns "string"
+                  }
+                }
+              }
+              of [
+                "a"
+                "b"
+              ]
+              procedure "std.concurrent.map"
+            }
+            id "tagged"
+          }
+        ]
+        result {
+          ref "tagged"
+        }
+      }
+    }
+    warp 1
+  }
+}

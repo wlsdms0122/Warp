@@ -1,0 +1,28 @@
+warpt 1
+{
+  expect {
+    answers true
+  }
+  name "ordering-compares-two-of-a-kind"
+  note "The words that order values order text too, so declaring them as taking numbers would say something they do not mean."
+  program {
+    needs [
+      "std.math.lessThan"
+    ]
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              value "b"
+            }
+            of "a"
+            procedure "std.math.lessThan"
+          }
+        }
+        returns "bool"
+      }
+    }
+    warp 1
+  }
+}

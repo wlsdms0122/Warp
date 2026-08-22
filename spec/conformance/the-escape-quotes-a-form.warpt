@@ -1,0 +1,31 @@
+warpt 1
+{
+  expect {
+    answers {
+      ref "nowhere"
+    }
+  }
+  name "the-escape-quotes-a-form"
+  note "`{ value: … }` carries exactly its data as a literal, even when the data looks like a form. Quotation is a fact about the document, not the expression it writes."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            id "kept"
+            value {
+              value {
+                ref "nowhere"
+              }
+            }
+          }
+        ]
+        result {
+          ref "kept"
+        }
+      }
+    }
+    warp 1
+  }
+}

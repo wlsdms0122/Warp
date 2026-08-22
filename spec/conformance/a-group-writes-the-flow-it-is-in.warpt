@@ -1,0 +1,36 @@
+warpt 1
+{
+  expect {
+    answers 1
+  }
+  name "a-group-writes-the-flow-it-is-in"
+  note "A group is the non-escaping reading of a closure: a body in a grammar position runs here, once, in the same flow, and nothing can carry it away. So it may set the enclosing variable — exactly the write a closure is refused."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            value 0
+            var "tally"
+          }
+          {
+            group {
+              body [
+                {
+                  set "tally"
+                  value 1
+                }
+              ]
+            }
+            id "grouped"
+          }
+        ]
+        result {
+          ref "tally"
+        }
+      }
+    }
+    warp 1
+  }
+}

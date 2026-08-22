@@ -1,0 +1,49 @@
+warpt 1
+{
+  expect {
+    answers {
+      message "on purpose"
+      type "aborted"
+    }
+  }
+  name "a-rescue-reads-the-failure-it-caught"
+  note "While the rescue runs, the statement's name binds the failure as a record: at least `type` and `message`. A failure is data the moment a rescue holds it."
+  program {
+    needs [
+      "std.control.abort"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            attempt {
+              body [
+                {
+                  call {
+                    of "on purpose"
+                    procedure "std.control.abort"
+                  }
+                }
+              ]
+              rescue {
+                result {
+                  message {
+                    ref "tried.message"
+                  }
+                  type {
+                    ref "tried.type"
+                  }
+                }
+              }
+            }
+            id "tried"
+          }
+        ]
+        result {
+          ref "tried"
+        }
+      }
+    }
+    warp 1
+  }
+}

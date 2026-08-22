@@ -1,0 +1,35 @@
+warpt 1
+{
+  expect {
+    answers 5
+  }
+  name "a-named-group-binds-its-result"
+  note "A group is a block written as a statement; its name binds what its result answers, and what it declared inside does not escape."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            group {
+              body [
+                {
+                  id "inner"
+                  value 5
+                }
+              ]
+              result {
+                ref "inner"
+              }
+            }
+            id "got"
+          }
+        ]
+        result {
+          ref "got"
+        }
+      }
+    }
+    warp 1
+  }
+}

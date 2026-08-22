@@ -1,0 +1,30 @@
+warpt 1
+{
+  arguments {
+    word "hey"
+  }
+  expect {
+    answers 2
+  }
+  name "arguments-are-settled-at-the-boundary"
+  note "What a caller passes is checked and settled against the declaration before the body sees it."
+  program {
+    needs []
+    procedures {
+      entry {
+        parameters {
+          times {
+            default 2
+            type "int"
+          }
+          word "string"
+        }
+        result {
+          ref "times"
+        }
+        returns "int"
+      }
+    }
+    warp 1
+  }
+}

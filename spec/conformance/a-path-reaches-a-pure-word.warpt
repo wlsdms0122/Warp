@@ -1,0 +1,29 @@
+warpt 1
+{
+  arguments {
+    items [
+      "a"
+      "b"
+      "c"
+    ]
+  }
+  expect {
+    answers 3
+  }
+  name "a-path-reaches-a-pure-word"
+  note "A path only ever reaches a word that answers without running, so nothing a path reaches escapes the program — and it needs no listing in needs."
+  program {
+    needs []
+    procedures {
+      entry {
+        parameters {
+          items "array<string>"
+        }
+        result {
+          ref "items.count"
+        }
+      }
+    }
+    warp 1
+  }
+}

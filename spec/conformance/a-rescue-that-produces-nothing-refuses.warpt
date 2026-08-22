@@ -1,0 +1,37 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-rescue-that-produces-nothing-refuses"
+  note "A rescue that produces nothing would swallow a failure into null without a trace."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            attempt {
+              body [
+                {
+                  id "work"
+                  value 1
+                }
+              ]
+              rescue {
+                body []
+              }
+              result {
+                ref "work"
+              }
+            }
+            id "tried"
+          }
+        ]
+        result {
+          ref "tried"
+        }
+      }
+    }
+    warp 1
+  }
+}

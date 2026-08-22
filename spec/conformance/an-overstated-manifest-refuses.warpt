@@ -1,0 +1,21 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "an-overstated-manifest-refuses"
+  note "The needs list is the set of what the program sends, not a bound around it — a word listed but never sent asks for a grant the program has no use for."
+  program {
+    needs [
+      "std.math.plus"
+    ]
+    procedures {
+      entry {
+        result {
+          value 1
+        }
+      }
+    }
+    warp 1
+  }
+}

@@ -1,0 +1,31 @@
+warpt 1
+{
+  arguments {
+    mode "medium"
+  }
+  expect {
+    refuses "run"
+  }
+  name "an-argument-outside-oneof-refuses-at-the-boundary"
+  note "For an argument only the run can see, `oneOf` is judged where the value is settled — at the boundary, before the body sees it."
+  program {
+    needs []
+    procedures {
+      entry {
+        parameters {
+          mode {
+            oneOf [
+              "fast"
+              "slow"
+            ]
+            type "string"
+          }
+        }
+        result {
+          ref "mode"
+        }
+      }
+    }
+    warp 1
+  }
+}

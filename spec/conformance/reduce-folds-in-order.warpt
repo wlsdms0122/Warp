@@ -1,0 +1,60 @@
+warpt 1
+{
+  expect {
+    answers 6
+  }
+  name "reduce-folds-in-order"
+  note "A walking word offers names — reduce offers `carried` and `item` — and the closure's own parameters say which of the offer it reads."
+  program {
+    needs [
+      "std.collection.reduce"
+      "std.math.plus"
+    ]
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              arguments {
+                from 0
+                value {
+                  closure {
+                    parameters {
+                      carried "int"
+                      item "int"
+                    }
+                    result {
+                      call {
+                        arguments {
+                          value {
+                            ref "item"
+                          }
+                        }
+                        of {
+                          ref "carried"
+                        }
+                        procedure "std.math.plus"
+                      }
+                    }
+                    returns "int"
+                  }
+                }
+              }
+              of [
+                1
+                2
+                3
+              ]
+              procedure "std.collection.reduce"
+            }
+            id "total"
+          }
+        ]
+        result {
+          ref "total"
+        }
+      }
+    }
+    warp 1
+  }
+}

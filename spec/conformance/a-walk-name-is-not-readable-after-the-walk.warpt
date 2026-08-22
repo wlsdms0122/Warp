@@ -1,0 +1,40 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-walk-name-is-not-readable-after-the-walk"
+  note "A walk answers nothing, so its name is the element's alone — a later read could only ever see null, and is refused instead."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            each {
+              body [
+                {
+                  id "noop"
+                  value 1
+                }
+              ]
+              in [
+                1
+              ]
+            }
+            id "walk"
+          }
+          {
+            id "after"
+            value {
+              ref "walk"
+            }
+          }
+        ]
+        result {
+          ref "after"
+        }
+      }
+    }
+    warp 1
+  }
+}

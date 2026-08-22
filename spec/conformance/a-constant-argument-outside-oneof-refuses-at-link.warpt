@@ -1,0 +1,45 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "a-constant-argument-outside-oneof-refuses-at-link"
+  note "`oneOf` is judged wherever an argument is settled against the parameter — for a constant argument, at the link."
+  program {
+    needs []
+    procedures {
+      entry {
+        body [
+          {
+            call {
+              arguments {
+                mode "medium"
+              }
+              procedure "pick"
+            }
+            id "got"
+          }
+        ]
+        result {
+          ref "got"
+        }
+      }
+      pick {
+        parameters {
+          mode {
+            oneOf [
+              "fast"
+              "slow"
+            ]
+            type "string"
+          }
+        }
+        result {
+          ref "mode"
+        }
+        returns "string"
+      }
+    }
+    warp 1
+  }
+}

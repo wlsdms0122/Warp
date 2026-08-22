@@ -1,0 +1,82 @@
+warpt 1
+{
+  expect {
+    answers true
+  }
+  name "values-are-the-same-by-what-they-hold"
+  note "Where two implementations most quietly differ. A whole number and a fraction of the same size are one value; a table has no order, so order is not part of whether two are the same."
+  program {
+    needs [
+      "std.logic.and"
+      "std.logic.equal"
+    ]
+    procedures {
+      entry {
+        result {
+          call {
+            of [
+              {
+                closure {
+                  result {
+                    call {
+                      arguments {
+                        value 1.0
+                      }
+                      of 1
+                      procedure "std.logic.equal"
+                    }
+                  }
+                }
+              }
+              {
+                closure {
+                  result {
+                    call {
+                      arguments {
+                        value {
+                          value {
+                            a 1
+                            b 2
+                          }
+                        }
+                      }
+                      of {
+                        value {
+                          a 1
+                          b 2
+                        }
+                      }
+                      procedure "std.logic.equal"
+                    }
+                  }
+                }
+              }
+              {
+                closure {
+                  result {
+                    call {
+                      arguments {
+                        value [
+                          1
+                          2
+                        ]
+                      }
+                      of [
+                        1
+                        2
+                      ]
+                      procedure "std.logic.equal"
+                    }
+                  }
+                }
+              }
+            ]
+            procedure "std.logic.and"
+          }
+        }
+        returns "bool"
+      }
+    }
+    warp 1
+  }
+}

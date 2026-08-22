@@ -1,0 +1,27 @@
+warpt 1
+{
+  expect {
+    refuses "link"
+  }
+  name "arithmetic-is-checked-before-it-runs"
+  note "Arithmetic says which values it takes, so a sum of a number and a piece of text is refused where declarations are checked rather than found by running it. A language claiming that what can be decided before running is decided before running has to hold in the most ordinary place a program has."
+  program {
+    needs [
+      "std.math.plus"
+    ]
+    procedures {
+      entry {
+        result {
+          call {
+            arguments {
+              value "a"
+            }
+            of 1
+            procedure "std.math.plus"
+          }
+        }
+      }
+    }
+    warp 1
+  }
+}

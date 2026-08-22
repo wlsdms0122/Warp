@@ -1,0 +1,43 @@
+warpt 1
+{
+  expect {
+    refuses "load"
+  }
+  name "a-branch-both-of-whose-arms-leave-ends-the-body"
+  note "The leave rules reach through structure: a branch both of whose arms leave never finishes, so nothing may follow it and no name may bind it."
+  program {
+    procedures {
+      entry {
+        body [
+          {
+            branch {
+              else {
+                body [
+                  {
+                    return 2
+                  }
+                ]
+              }
+              then {
+                body [
+                  {
+                    return 1
+                  }
+                ]
+              }
+              when true
+            }
+          }
+          {
+            id "after"
+            value 3
+          }
+        ]
+        result {
+          ref "after"
+        }
+      }
+    }
+    warp 1
+  }
+}
